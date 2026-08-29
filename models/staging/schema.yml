@@ -62,3 +62,104 @@ sources:
 
           - name: ship_cost
             description: shipping cost
+
+      - name: adwords
+        identifier: raw_gz_adwords
+
+      - name: bing
+        identifier: raw_gz_bing
+
+      - name: criteo
+        identifier: raw_gz_criteo
+
+      - name: facebook
+        identifier: raw_gz_facebook
+
+
+models:
+
+  - name: int_campaigns
+    description: tüm kampanyalardan gelen veriler
+    columns:
+      - name: paid_source
+        tests:
+          - not_null
+
+      - name: campaign_name
+        tests:
+          - not_null
+
+  - name: int_campaigns_day
+    description: Kampanya verilerinin günlük olarak toplulaştırılmış hali
+    columns:
+      - name: date_date
+        description: Kampanya verilerinin tarihi
+        tests:
+          - not_null
+          - unique
+
+      - name: ads_cost
+        description: Günlük toplam reklam maliyeti
+        tests:
+          - not_null
+
+      - name: ads_impression
+        description: Günlük toplam reklam gösterimi
+        tests:
+          - not_null
+
+      - name: ads_clicks
+        description: Günlük toplam reklam tıklaması
+        tests:
+          - not_null
+
+
+  - name: finance_campaigns_day
+    description: Günlük finans ve reklam performansını birleştiren görünüm.
+    columns:
+      - name: date
+        description: Günlük tarih
+        tests:
+          - not_null
+          - unique
+
+      - name: ads_margin
+        description: Operational margin eksi reklam maliyeti.
+        tests:
+          - not_null
+
+      - name: average_basket
+        description: Günlük ortalama sepet tutarı
+
+      - name: operational_margin
+        description: Günlük operasyonel marj
+
+      - name: ads_cost
+        description: Günlük toplam reklam maliyeti
+
+      - name: ads_impression
+        description: Günlük toplam reklam gösterimi
+
+      - name: ads_clicks
+        description: Günlük toplam reklam tıklaması
+
+      - name: quantity
+        description: Günlük satılan ürün adedi
+
+      - name: revenue
+        description: Günlük toplam gelir
+
+      - name: purchase_cost
+        description: Günlük toplam satın alma maliyeti
+
+      - name: margin
+        description: Günlük brüt marj
+
+      - name: shipping_fee
+        description: Günlük toplam kargo ücreti
+
+      - name: log_cost
+        description: Günlük lojistik maliyeti
+
+      - name: ship_cost
+        description: Günlük sevkiyat maliyeti
